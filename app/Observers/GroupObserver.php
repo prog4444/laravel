@@ -2,20 +2,17 @@
 
 namespace App\Observers;
 
-use App\Models\Group;
-use App\Models\Group_User;
 use App\Models\GroupUser;
-use Carbon\Carbon;
 
 class GroupObserver
 {
     /**
-     * Handle the Group "created" event.
+     * Handle the GroupUser "created" event.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\GroupUser  $groupUser
      * @return void
      */
-    public function created(Group $groupUser)
+    public function created(GroupUser $groupUser)
     {
         $group = GroupUser::query()->find($groupUser->group_id);
         $groupUser->expire_time =Carbon::now()->addHour($group->expire_hours);
@@ -23,45 +20,45 @@ class GroupObserver
     }
 
     /**
-     * Handle the Group "updated" event.
+     * Handle the GroupUser "updated" event.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\GroupUser  $groupUser
      * @return void
      */
-    public function updated(Group $group)
+    public function updated(GroupUser $groupUser)
     {
         //
     }
 
     /**
-     * Handle the Group "deleted" event.
+     * Handle the GroupUser "deleted" event.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\GroupUser  $groupUser
      * @return void
      */
-    public function deleted(Group $group)
+    public function deleted(GroupUser $groupUser)
     {
         //
     }
 
     /**
-     * Handle the Group "restored" event.
+     * Handle the GroupUser "restored" event.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\GroupUser  $groupUser
      * @return void
      */
-    public function restored(Group $group)
+    public function restored(GroupUser $groupUser)
     {
         //
     }
 
     /**
-     * Handle the Group "force deleted" event.
+     * Handle the GroupUser "force deleted" event.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\GroupUser  $groupUser
      * @return void
      */
-    public function forceDeleted(Group $group)
+    public function forceDeleted(GroupUser $groupUser)
     {
         //
     }

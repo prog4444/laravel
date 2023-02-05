@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\Group;
 use App\Models\Group_User;
+use App\Models\GroupUser;
+use App\Models\Users;
 use Illuminate\Console\Command;
 
 class UserOne extends Command
@@ -13,7 +15,7 @@ class UserOne extends Command
      *
      * @var string
      */
-    protected $signature = 'user:member {user_id}, {group_id}';
+    protected $signature = 'user:member {user_id}';
 
     /**
      * The console command description.
@@ -29,16 +31,19 @@ class UserOne extends Command
      */
     public function handle()
     {
-        $user_id = $this->argument('user_id');
-        $group_id = $this->argument('group_id');
-        $group = Group_User::create([
-            'group_id' => $user_id,
-        ]);
-        $group_u = Group::query()->with('user')->where('active', false)->get();
-        $group_u->user->update([
-            'activer' => 'True',
-        ]);
-        return $group_u;
+        $group_id = $this->argument('user_id');
+        $group_u = Users::query()->where('active', 'false')->first();
+        if(!$group_u){
+            Users::updated([
+                'active' => 'True',
+            ]);
+            print_r(10);
+
+        }else{
+            print_r(1);
+        }
+
+
 
 
 
