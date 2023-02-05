@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use phpDocumentor\Reflection\Type;
 use PHPUnit\TextUI\XmlConfiguration\Group;
 
 class GroupsSeeder extends Seeder
@@ -17,18 +19,18 @@ class GroupsSeeder extends Seeder
     {
 //
         \App\Models\Group::truncate();
-        $marka =
+        $group =
             [
                 [
                     'name' => 'Группа 1',
-                    'expire_hours' => '1'
+                    'expire_hours' => Carbon::now()->addMonth(),
                 ],
                 [
                     'name' => 'Группа 2',
-                    'expire_hours' => '2'
+                    'expire_hours' => Carbon::now()->addMonth(),
                 ],
             ];
-        foreach ($marka as $m){
+        foreach ($group as $m){
             \App\Models\Group::create($m);
         }
 

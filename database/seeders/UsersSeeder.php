@@ -14,8 +14,8 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-//        \App\Models\Users::truncate();
-        $marka =
+//        \App\Models\User::truncate();
+        $user =
             [
                 [
                     'name' => 'Иванов',
@@ -26,8 +26,8 @@ class UsersSeeder extends Seeder
                     'email' => 'job@datainlife.ru'
                 ],
             ];
-        foreach ($marka as $m){
-            \App\Models\Users::create($m);
+        foreach ($user as $m){
+            \App\Models\User::create($m);
         }
     }
 }

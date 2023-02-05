@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('droups', function (Blueprint $table) {
+        Schema::create('group', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('expire_hours')->comment('через какое количество часов пользователь после добавления в группу должен быть исключен из группы');
+            $table->dateTime('expire_hours');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('droups');
+        Schema::dropIfExists('group');
     }
 };

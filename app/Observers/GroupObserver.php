@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Models\Group;
 use App\Models\Group_User;
+use App\Models\GroupUser;
+use Carbon\Carbon;
 
 class GroupObserver
 {
@@ -13,11 +15,11 @@ class GroupObserver
      * @param  \App\Models\Group  $group
      * @return void
      */
-    public function created(Group $group)
+    public function created(Group $groupUser)
     {
-        $group_user = Group_User::all();
-        $group->expire_hours = $group_user->expired_at–datetime;
-        $group->save();
+        $group = GroupUser::query()->find($groupUser->group_id);
+        $groupUser->expire_time =Carbon::now()->addHour($group->expire_hours);
+        $groupUser->save();
     }
 
     /**

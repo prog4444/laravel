@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users_s', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('active')->default('true');
+            $table->unsignedBigInteger('user_id');
+            $table->foreignId('group_id')->constrained('groups');
+            $table->dateTime('expired_at');
             $table->timestamps();
+
+            $table->unique(['user_id', 'group_id']);
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_s');
+        Schema::dropIfExists('group_user');
     }
 };
