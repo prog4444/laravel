@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Group_User;
+use App\Models\GroupUser;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -29,8 +30,8 @@ class UserCheck extends Command
      */
     public function handle()
     {
-        $cor = Carbon::now();
-        $group_user_all = Group_User::query()->where('expired_at–datetime', '>', $cor)->get();
+        $corbon = Carbon::now();
+        $group_user_all = GroupUser::query()->where('expired_at', '>', $corbon)->get();
         return 'Здравствуйте Истекло время вашего участия в группе name'.$group_user_all;
 
     }
